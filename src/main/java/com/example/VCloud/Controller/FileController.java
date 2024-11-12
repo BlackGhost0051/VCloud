@@ -11,7 +11,6 @@
     import org.springframework.http.MediaType;
     import org.springframework.http.ResponseEntity;
     import org.springframework.stereotype.Controller;
-    import org.springframework.util.FileCopyUtils;
     import org.springframework.util.ResourceUtils;
     import org.springframework.web.bind.annotation.GetMapping;
     import org.springframework.web.bind.annotation.PostMapping;
@@ -29,7 +28,7 @@
     @Controller
     public class FileController {
 
-        private static final String UPLOAD_DIR = System.getProperty("user.dir") + "src/main/resources/cloud/";
+        /*private static final String UPLOAD_DIR = System.getProperty("user.dir") + "src/main/resources/cloud/";
 
         @Autowired
         JwtUtil jwtUtil;  // JWT
@@ -86,13 +85,13 @@
                             }
                             return "redirect:/send";
                         } else {
-                            return "error_401";
+                            return "error";
                         }
                     }
                 }
             }
 
-            return "error_401";
+            return "error";
         }
 
         @GetMapping("/delete")
@@ -113,18 +112,18 @@
                                     // File deleted successfully, redirect to /send
                                     return "redirect:/send";
                                 } else {
-                                    return "error_401"; // Internal server error
+                                    return "error"; // Internal server error
                                 }
                             } else {
-                                return "error_401"; // File not found
+                                return "error"; // File not found
                             }
                         } else {
-                            return "error_401"; // Unauthorized
+                            return "error"; // Unauthorized
                         }
                     }
                 }
             }
-            return "error_401"; // Unauthorized
+            return "error"; // Unauthorized
         }
 
 
@@ -170,11 +169,11 @@
                         if (jwtStatus) {
                             return "cloud_send";
                         } else {
-                            return "error_401";
+                            return "error";
                         }
                     }
                 }
             }
-            return "error_401";
-        }
-    }
+            return "error";
+        }*/
+}

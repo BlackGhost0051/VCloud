@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ProtectedResourceController {
-
+/*
     @Autowired
     private JwtUtil jwtUtil;
 
@@ -26,5 +26,6 @@ public class ProtectedResourceController {
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized access");
     }
+*/
 }
 

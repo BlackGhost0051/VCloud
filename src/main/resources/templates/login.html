@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+	<title>VCloud Login</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}" type="text/css" />
+
+
+</head>
+
+<body>
+
+	<div id="container">
+		<form>
+			<input id="login" type="text" placeholder="login">
+			<input id="pass" type="password" placeholder="password">
+
+			<button id="sendPost">Login</button>
+			<a href="/register">Register</a>
+			<script th:src="@{/js/script.js}"></script>
+		</form>
+	</div>
+
+</body>
+</html>

@@ -18,7 +18,7 @@ import java.util.List;
 
 @Controller
 public class VCloudController {
-    @Autowired
+    /*@Autowired
     private Users users;
     @GetMapping("/hello")
     @ResponseBody
@@ -33,38 +33,6 @@ public class VCloudController {
     }
 
 
-
-    /*@PostMapping("/login")
-    @ResponseBody
-    public String login(@RequestBody MultiValueMap<String, String> loginData) {
-        String login = loginData.getFirst("login");
-        String password = loginData.getFirst("password");
-
-        List<User> userList = users.getAllUsers();
-
-        for (User user : userList) {
-            if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
-                return "Successful login for user: " + login;
-            }
-        }
-        return "Invalid login credentials";
-    }*/
-
-//    @PostMapping("/login")
-//    @ResponseBody
-//    public ResponseEntity<?> login(@RequestBody MultiValueMap<String, String> loginData) {
-//        String login = loginData.getFirst("login");
-//        String password = loginData.getFirst("password");
-//
-//        List<User> userList = users.getAllUsers();
-//
-//        for (User user : userList) {
-//            if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
-//                return ResponseEntity.ok().body("Successful login for user: " + login);
-//            }
-//        }
-//        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid login credentials");
-//    }
 
 
         @Autowired
@@ -95,5 +63,5 @@ public class VCloudController {
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid login credentials");
     }
-
+*/
 }
