@@ -10,6 +10,11 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class GlobalController {
 
+    /*@GetMapping("/favicon.ico")
+    public String favicon() {
+        return "";
+    }*/
+
     @GetMapping("/")
     public ModelAndView index(HttpServletResponse response) {
 
