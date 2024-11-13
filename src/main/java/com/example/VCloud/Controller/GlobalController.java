@@ -1,8 +1,6 @@
 package com.example.VCloud.Controller;
 
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -10,36 +8,44 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class GlobalController {
 
-    /*@GetMapping("/favicon.ico")
-    public String favicon() {
-        return "";
-    }*/
+
 
     @GetMapping("/")
     public ModelAndView index(HttpServletResponse response) {
 
         // get jwt
         // if jwt true
-        // return index
+        // return index ?? find userDir and return his folders
         // else return login
 
-        response.setStatus(500);
-        return make_error(response,500,"Something went wrong");
+        return make_error(response,500,"Something went wrong.");
     }
 
     @GetMapping("/login")
-    public String login() {
-        return "login";
+    public ModelAndView login(HttpServletResponse response) {
+        try{
+            return new ModelAndView("login");
+        } catch (Exception e){
+            return make_error(response, 400, "Something went wrong.\n" + e.toString());
+        }
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam String username,String password){
-        return "error";
+    @ResponseBody
+    public String login(@RequestParam String username, String password){
+        // pass make hash
+        // find in database
+        // return jwt
+        return username + " " + password;
     }
 
     @GetMapping("/register")
-    public String register() {
-        return "register";
+    public ModelAndView register(HttpServletResponse response) {
+        try{
+            return new ModelAndView("register");
+        } catch (Exception e){
+            return make_error(response, 400, "Something went wrong.\n" + e.toString());
+        }
     }
 
 
