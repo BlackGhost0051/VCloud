@@ -49,11 +49,11 @@ public class GlobalController {
     }
 
 
-    ModelAndView make_error(HttpServletResponse response, int error_code, String error_message){
-        response.setStatus(error_code);
+    ModelAndView make_error(HttpServletResponse response, int status, String error){
+        response.setStatus(status);
         ModelAndView modelAndView = new ModelAndView("error");
-        modelAndView.addObject("error_code", error_code);
-        modelAndView.addObject("error_message", error_message);
+        modelAndView.addObject("status", status);
+        modelAndView.addObject("error", error);
         return modelAndView;
     }
 }
