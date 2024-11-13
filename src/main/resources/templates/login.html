@@ -9,15 +9,15 @@
 <body>
 
 	<div id="container">
-		<form>
+		<form id="login_form">
 			<input id="login" type="text" placeholder="login">
 			<input id="pass" type="password" placeholder="password">
 
-			<button id="sendPost">Login</button>
+			<button id="login_button" type="button">Login</button>
 			<a href="/register">Register</a>
-			<script th:src="@{/js/script.js}"></script>
 		</form>
 	</div>
 
+	<script th:src="@{/js/login.js}"></script>
 </body>
 </html>
