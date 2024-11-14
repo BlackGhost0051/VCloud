@@ -5,6 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
+
 @Controller
 public class GlobalController {
 
@@ -32,11 +37,15 @@ public class GlobalController {
 
     @PostMapping("/login")
     @ResponseBody
-    public String login(@RequestParam String username, String password){
-        // pass make hash
-        // find in database
-        // return jwt
-        return username + " " + password;
+    public String login(@RequestParam String username,@RequestParam String password){
+        try{
+            MessageDigest digest = MessageDigest.getInstance("SHA3-512");
+            byte[] hashedBytes = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+            String hashedPassword = Base64.getEncoder().encodeToString(hashedBytes);
+            return "Username: " + username + ", Hashed Password: " + hashedPassword;
+        } catch (NoSuchAlgorithmException e){
+            throw new RuntimeException("SHA3-512 algorithm not available", e);
+        }
     }
 
     @GetMapping("/register")
@@ -48,6 +57,21 @@ public class GlobalController {
         }
     }
 
+    @PostMapping("/register")
+    @ResponseBody
+    public String register(@RequestParam String email, @RequestParam String username, @RequestParam String password){
+        try{
+            MessageDigest digest = MessageDigest.getInstance("SHA3-512");
+            byte[] hashedBytes = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+            String hashedPassword = Base64.getEncoder().encodeToString(hashedBytes);
+
+            // connect to database
+
+            return "Username: " + username + ", Hashed Password: " + hashedPassword;
+        } catch (NoSuchAlgorithmException e){
+            throw new RuntimeException("SHA3-512 algorithm not available", e);
+        }
+    }
 
     ModelAndView make_error(HttpServletResponse response, int status, String error){
         response.setStatus(status);
