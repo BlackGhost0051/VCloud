@@ -65,6 +65,8 @@ public class GlobalController {
             byte[] hashedBytes = digest.digest(password.getBytes(StandardCharsets.UTF_8));
             String hashedPassword = Base64.getEncoder().encodeToString(hashedBytes);
 
+            // verify is email?
+
             // connect to database
 
             return "Username: " + username + ", Hashed Password: " + hashedPassword;
