@@ -2,6 +2,6 @@ package com.example.VCloud.Managers;
 
 public class FileManager {
     /*
-    dir name = login + loginHash
+    dir name = from database
     */
 }

@@ -10,6 +10,8 @@ public class DataBaseManager {
             "        password TEXT NOT NULL\n" +
             "    );";
 
+    // dir name = login + loginHash ???
+
     private String dataBaseName = "database.db";
 
 
