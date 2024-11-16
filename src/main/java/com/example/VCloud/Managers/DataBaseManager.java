@@ -25,6 +25,7 @@ public class DataBaseManager {
     }
 
     private void initDataBase(){
-
+        // check folder
+        // check database
     }
 }
