@@ -15,11 +15,17 @@ register_button.addEventListener("click", function (){
 
     console.log(login + " " + email + " " + pass1 + " " + pass2);
 
-    // verify is email? ( @ . ... )
+    if(!isEmailValid(email)){
+        alert("Write current email form!")
+    }
 
     if(pass1 === pass2){
-
     } else {
         alert("Passwords are the difference! Try one more.");
     }
 });
+
+function isEmailValid(email){
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
