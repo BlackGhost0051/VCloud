@@ -10,6 +10,13 @@ Spring
 
 ## Run
 
+### IntelliJ
+### Terminal
+
+```
+
+```
+
 ## DataBase
 
 
