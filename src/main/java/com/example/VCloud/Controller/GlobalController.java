@@ -38,12 +38,12 @@ public class GlobalController {
 
     @PostMapping("/login")
     @ResponseBody
-    public String login(@RequestParam String username,@RequestParam String password){
+    public String login(@RequestParam String login,@RequestParam String password){
         try{
             MessageDigest digest = MessageDigest.getInstance("SHA3-512");
             byte[] hashedBytes = digest.digest(password.getBytes(StandardCharsets.UTF_8));
             String hashedPassword = Base64.getEncoder().encodeToString(hashedBytes);
-            return "Username: " + username + ", Hashed Password: " + hashedPassword;
+            return "Username: " + login + ", Hashed Password: " + hashedPassword;
         } catch (NoSuchAlgorithmException e){
             throw new RuntimeException("SHA3-512 algorithm not available", e);
         }
@@ -60,17 +60,16 @@ public class GlobalController {
 
     @PostMapping("/register")
     @ResponseBody
-    public String register(@RequestParam String email, @RequestParam String username, @RequestParam String password){
+    public String register(@RequestParam String email, @RequestParam String login, @RequestParam String password){
         try{
             MessageDigest digest = MessageDigest.getInstance("SHA3-512");
             byte[] hashedBytes = digest.digest(password.getBytes(StandardCharsets.UTF_8));
             String hashedPassword = Base64.getEncoder().encodeToString(hashedBytes);
 
             // verify is email?
+            DataBaseManager db = new DataBaseManager();
 
-            // connect to database
-
-            return "Username: " + username + ", Hashed Password: " + hashedPassword;
+            return db.registerUser(email,login,hashedPassword);
         } catch (NoSuchAlgorithmException e){
             throw new RuntimeException("SHA3-512 algorithm not available", e);
         }
