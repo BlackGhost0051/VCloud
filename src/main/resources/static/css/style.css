@@ -40,6 +40,15 @@
     background-color: #0056b3;
 }
 
+#container a{
+    color: #007bff;
+    text-decoration: none;
+}
+
+#container a:hover{
+    color: #0056b3;
+}
+
 
 h2{
   margin-left: 10ex;
