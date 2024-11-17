@@ -20,8 +20,6 @@ public class DataBaseManager {
             "        password TEXT NOT NULL\n" +
             "    );";
 
-    // dir name = login + loginHash ???
-
     private String dataBaseName = "database.db";
 
 
@@ -30,10 +28,11 @@ public class DataBaseManager {
     }
 
 
-    public boolean registerUser(String login, String email,String password) {
+    public void registerUser(String login, String email, String password) {
+        try {
 
-
-        return false;
+        } catch (Exception e) {
+        }
     }
 
     private void initDataBase(){
@@ -54,7 +53,5 @@ public class DataBaseManager {
             e.printStackTrace();
             System.err.println("Failed to initialize the database: " + e.getMessage());
         }
-        // check folder
-        // check database
     }
 }

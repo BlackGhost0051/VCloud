@@ -1,5 +1,6 @@
 package com.example.VCloud.Controller;
 
+import com.example.VCloud.Managers.DataBaseManager;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -73,6 +74,13 @@ public class GlobalController {
         } catch (NoSuchAlgorithmException e){
             throw new RuntimeException("SHA3-512 algorithm not available", e);
         }
+    }
+
+    @GetMapping("/db_test")
+    @ResponseBody
+    public String db_test(){
+        DataBaseManager dataBaseManager = new DataBaseManager();
+        return "Database initialization successful!";
     }
 
     ModelAndView make_error(HttpServletResponse response, int status, String error){
