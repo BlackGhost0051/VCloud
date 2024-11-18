@@ -28,6 +28,27 @@ public class DataBaseManager {
         initDataBase();
     }
 
+    public boolean checkUser(String login, String password) {
+        try{
+            Connection connection = DriverManager.getConnection("jdbc:sqlite:" + databaseFile.toString());
+            String query = "SELECT password FROM users WHERE login = ?";
+
+            try(PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setString(1, login);
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                if (resultSet.next()) {
+                    String dbPassword = resultSet.getString("password");
+                    if(password.equals(dbPassword)) {
+                        return true;
+                    }
+                }
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     public String registerUser(String login, String email, String password) { // need use int and add logic to error in rooter
         try {
