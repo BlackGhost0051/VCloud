@@ -43,7 +43,13 @@ public class GlobalController {
             MessageDigest digest = MessageDigest.getInstance("SHA3-512");
             byte[] hashedBytes = digest.digest(password.getBytes(StandardCharsets.UTF_8));
             String hashedPassword = Base64.getEncoder().encodeToString(hashedBytes);
-            return "Username: " + login + ", Hashed Password: " + hashedPassword;
+
+            DataBaseManager db = new DataBaseManager();
+            if(db.checkUser(login,hashedPassword)){
+                return "Success";
+            } else {
+                return "Fail";
+            }
         } catch (NoSuchAlgorithmException e){
             throw new RuntimeException("SHA3-512 algorithm not available", e);
         }
