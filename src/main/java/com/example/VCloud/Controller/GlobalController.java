@@ -1,6 +1,7 @@
 package com.example.VCloud.Controller;
 
 import com.example.VCloud.Managers.DataBaseManager;
+import com.example.VCloud.Managers.JWTManager;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -81,10 +82,12 @@ public class GlobalController {
         }
     }
 
-    @GetMapping("/db_test")
+    @GetMapping("/test")
     @ResponseBody
     public String db_test(){
-        DataBaseManager dataBaseManager = new DataBaseManager();
+        JWTManager jwtManager = new JWTManager();
+        JWTManager jwtManager2 = new JWTManager();
+        JWTManager jwtManager3 = new JWTManager();
         return "Database initialization successful!";
     }
 

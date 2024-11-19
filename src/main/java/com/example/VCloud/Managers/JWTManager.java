@@ -1,25 +1,55 @@
 package com.example.VCloud.Managers;
 
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+
+import java.security.SecureRandom;
+import java.util.Base64;
+import java.util.Date;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class JWTManager {
-    private static final String SECRET_KEY = "test-secret-key";  // make hash ?
+    private static String SECRET_KEY;
 
-    public JWTManager() {
-
+    static {
+        SECRET_KEY = generateSecretKey();
     }
 
-    public String generateToken(String username) {
-        return "";
+    public JWTManager() {}
+
+    public String generateToken(String login) {
+        Map<String,Object> claims = new HashMap<>();
+        return Jwts.builder()
+                .setClaims(claims)
+                .setSubject(login)
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 2))
+                .signWith(SignatureAlgorithm.PS512, SECRET_KEY)
+                .compact();
     }
 
     public boolean verifyToken(String token) {
-        return false;
+        try{
+            Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token);
+            return true;
+        } catch (Exception e){
+            return false;
+        }
     }
 
-    public String getUsername(String token) {
-        return "";
+    public String getLogin(String token) {
+        return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody().getSubject();
     }
 
-    public String getEmail(String token) {
-        return "";
+
+    private static String generateSecretKey() {
+        SecureRandom secureRandom = new SecureRandom();
+
+        byte[] key = new byte[32];
+        secureRandom.nextBytes(key);
+
+        return Base64.getEncoder().encodeToString(key);
     }
 }
