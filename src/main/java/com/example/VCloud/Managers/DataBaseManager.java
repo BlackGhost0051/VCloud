@@ -50,7 +50,7 @@ public class DataBaseManager {
         return false;
     }
 
-    public String registerUser(String login, String email, String password) { // need use int and add logic to error in rooter
+    public String registerUser(String email, String login, String password) { // need use int and add logic to error in rooter
         try {
             Connection connection = DriverManager.getConnection("jdbc:sqlite:" + databaseFile.toAbsolutePath());
             String query = "SELECT COUNT(*) FROM users WHERE email = ? OR login = ?";
