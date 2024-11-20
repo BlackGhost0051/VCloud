@@ -12,6 +12,7 @@ Spring
     - [Terminal](#terminal)
   - [DataBase](#database)
     - [Database Structure](#database-structurea)
+  - [Structure](#structure)
 
 # Documentetion
 
@@ -28,4 +29,4 @@ Spring
 
 ### Database Structure
 
-
+## Structure
