@@ -69,11 +69,14 @@ public class GlobalController {
     @ResponseBody
     public String register(@RequestParam String email, @RequestParam String login, @RequestParam String password){
         try{
+            if (!isValidEmail(email)) {
+                return "Invalid email address!";
+            }
+
             MessageDigest digest = MessageDigest.getInstance("SHA3-512");
             byte[] hashedBytes = digest.digest(password.getBytes(StandardCharsets.UTF_8));
             String hashedPassword = Base64.getEncoder().encodeToString(hashedBytes);
 
-            // verify is email?
             DataBaseManager db = new DataBaseManager();
 
             return db.registerUser(email,login,hashedPassword);
@@ -97,5 +100,10 @@ public class GlobalController {
         modelAndView.addObject("status", status);
         modelAndView.addObject("error", error);
         return modelAndView;
+    }
+
+    private boolean isValidEmail(String email) {
+        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$";
+        return email != null && email.matches(emailRegex);
     }
 }
