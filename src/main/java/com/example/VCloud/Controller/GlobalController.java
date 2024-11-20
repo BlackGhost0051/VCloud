@@ -46,10 +46,13 @@ public class GlobalController {
             String hashedPassword = Base64.getEncoder().encodeToString(hashedBytes);
 
             DataBaseManager db = new DataBaseManager();
+
             if(db.checkUser(login,hashedPassword)){
-                return "Success";
+                JWTManager jwtManager = new JWTManager();
+                String jwtTocken = jwtManager.generateToken(login);
+                return jwtTocken;
             } else {
-                return "Fail";
+                return "Invalid login or password.";
             }
         } catch (NoSuchAlgorithmException e){
             throw new RuntimeException("SHA3-512 algorithm not available", e);
