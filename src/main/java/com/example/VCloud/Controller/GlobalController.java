@@ -1,8 +1,10 @@
 package com.example.VCloud.Controller;
 
 import com.example.VCloud.Managers.DataBaseManager;
+import com.example.VCloud.Managers.FileManager;
 import com.example.VCloud.Managers.JWTManager;
 import jakarta.servlet.http.HttpServletResponse;
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -87,6 +89,18 @@ public class GlobalController {
             throw new RuntimeException("SHA3-512 algorithm not available", e);
         }
     }
+/*
+    @GetMapping("/get_dir_tree")
+    @ResponseBody
+    public String getDirectoryTree(@RequestParam String login) {
+        FileManager fileManager = new FileManager();
+        JSONObject directoryTree = fileManager.getDirectoryTree(login);
+        if (directoryTree != null) {
+            return directoryTree.toString();
+        }
+        return "{\"error\": \"User directory not found or an error occurred.\"}";
+    }
+*/
 
     @GetMapping("/test")
     @ResponseBody
