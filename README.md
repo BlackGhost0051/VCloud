@@ -19,6 +19,9 @@ Spring
 ## Run
 
 ### IntelliJ
+
+```Run```
+
 ### Terminal
 
 ```
