@@ -3,8 +3,11 @@ package com.example.VCloud.Controller;
 import com.example.VCloud.Managers.DataBaseManager;
 import com.example.VCloud.Managers.FileManager;
 import com.example.VCloud.Managers.JWTManager;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.json.JSONObject;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -41,7 +44,7 @@ public class GlobalController {
 
     @PostMapping("/login")
     @ResponseBody
-    public String login(@RequestParam String login,@RequestParam String password){
+    public ResponseEntity login(@RequestParam String login,@RequestParam String password,HttpServletResponse response){
         try{
             MessageDigest digest = MessageDigest.getInstance("SHA3-512");
             byte[] hashedBytes = digest.digest(password.getBytes(StandardCharsets.UTF_8));
@@ -52,9 +55,16 @@ public class GlobalController {
             if(db.checkUser(login,hashedPassword)){
                 JWTManager jwtManager = new JWTManager();
                 String jwtTocken = jwtManager.generateToken(login);
-                return jwtTocken;
+                Cookie cookie = new Cookie("jwt_token", jwtTocken);
+                cookie.setPath("/");
+                cookie.setSecure(true);
+                cookie.setHttpOnly(true);
+
+                response.addCookie(cookie);
+
+                return ResponseEntity.ok().body(jwtTocken);
             } else {
-                return "Invalid login or password.";
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid login credentials");
             }
         } catch (NoSuchAlgorithmException e){
             throw new RuntimeException("SHA3-512 algorithm not available", e);
