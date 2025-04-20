@@ -1,4 +1,4 @@
-package com.example.VCloud;
+package com.blackghost.VCloud;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
