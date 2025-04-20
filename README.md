@@ -18,15 +18,12 @@ Spring
 
 ## Run
 
-### IntelliJ
-
-```Run```
-
-### Terminal
+### Docker
 
 ```
 
 ```
+
 
 ## DataBase
 
