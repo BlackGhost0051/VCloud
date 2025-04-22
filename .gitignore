@@ -34,6 +34,4 @@ build/
 
 
 ### ###
-base.db
-db.txt
-database.db
+src/main/resources/database/*
